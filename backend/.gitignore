@@ -3,6 +3,7 @@ node_modules/
 out/
 build/
 .env*
+.env.local
 !.env.example
 next-env.d.ts
 *.tsbuildinfo

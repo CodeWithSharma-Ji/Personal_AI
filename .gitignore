@@ -1,0 +1,17 @@
+# Dependencies and builds
+node_modules/
+.next/
+out/
+build/
+
+# Hallmark
+.hallmark/
+
+# Environment files
+.env*.local
+.env
+!.env.example
+
+# OS / Editor
+.DS_Store
+.idea/
