@@ -1,12 +1,19 @@
+import { getDb } from "@/lib/mongodb";
+
 export async function GET() {
-  const apiKey = process.env.AI_API_KEY;
-  const customApiUrl = process.env.AI_API_URL &&
-    process.env.AI_API_URL !== "https://api.openai.com/v1/chat/completions";
+  const db = await getDb();
+  let dbStatus = "ok";
+
+  if (db) {
+    try {
+      await db.command({ ping: 1 });
+    } catch {
+      dbStatus = "degraded";
+    }
+  }
 
   return Response.json({
     status: "ok",
-    assistantConfigured: Boolean(
-      (apiKey && apiKey !== "replace-with-your-provider-key") || customApiUrl,
-    ),
+    db: dbStatus,
   });
 }
